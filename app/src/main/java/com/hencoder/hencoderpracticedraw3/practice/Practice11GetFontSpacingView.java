@@ -5,12 +5,14 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class Practice11GetFontSpacingView extends View {
+    private static final String TAG = "Practice11GetFontSpacin";
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     String text = "Hello HenCoder";
-
+    float textHeight;
     public Practice11GetFontSpacingView(Context context) {
         super(context);
     }
@@ -25,6 +27,8 @@ public class Practice11GetFontSpacingView extends View {
 
     {
         paint.setTextSize(60);
+        textHeight = paint.getFontSpacing();
+        Log.d(TAG, "instance initializer: "+textHeight);
     }
 
     @Override
@@ -32,12 +36,12 @@ public class Practice11GetFontSpacingView extends View {
         super.onDraw(canvas);
 
         // 使用 Paint.getFontSpacing() 来获取推荐的行距
-        float spacing = 20;
 
+       
         canvas.drawText(text, 50, 100, paint);
 
-        canvas.drawText(text, 50, 100 + spacing, paint);
+        canvas.drawText(text, 50, 100 +textHeight, paint);
 
-        canvas.drawText(text, 50, 100 + spacing * 2, paint);
+        canvas.drawText(text, 50, 100  +textHeight*2, paint);
     }
 }
